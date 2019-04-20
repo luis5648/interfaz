@@ -1,0 +1,10 @@
+del proveedor: rfc, nombre, regimenFiscal
+
+del cliente: rfc, nombre, usocfdi
+
+de las facturas: numero de factura, rfc del cliente, rfc del proveedor, iva, total, subtotal, 
+
+(en la tabla de las facturas, agregar un campo donde 
+se almacene el nombre del archivo xml que entra por 
+el servidor de sockets para poder listarlo, 
+encontrarlo y abrirlo con la interfaz web )

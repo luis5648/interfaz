@@ -1,0 +1,42 @@
+body {
+    background: rgb(2, 0, 36);
+    background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(22, 9, 121, 1) 0%, rgba(161, 18, 255, 1) 89%);
+}
+
+h2,
+h3 {
+    color: white;
+    margin: 2%;
+}
+
+div#tablaDatos {
+    position: absolute;
+    text-align: center;
+    margin-left: 5%;
+    bottom: 0px;
+    width: 90%;
+    height: 40%;
+    overflow-x: auto;
+    overflow-y: auto;
+}
+
+form#f1 {
+    color: white;
+    margin-bottom: 3%;
+    margin-left: 5%;
+    float: left;
+}
+
+form#f2 {
+    color: white;
+    margin-bottom: 3%;
+    margin-left: 20%;
+    float: left;
+}
+
+form#f3 {
+    color: white;
+    margin-bottom: 3%;
+    float: left;
+    margin-left: 20%;
+}
