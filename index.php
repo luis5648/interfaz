@@ -91,28 +91,29 @@ require "php/Conexion.php"
                 if (isset($_POST["buscaClien"])) {
 
                     $cliente = $_POST["nombreCliente"];
+                    $rutaPrueba = "https://www.google.com";
 
                     strtolower($cliente);
 
-                    $cons= mysqli_query($conn,"SELECT NumeroDeFactura, nombre_cliente,clientes.RFC_Cliente,proveedores.RFC_Proveedor,nombre_proveedor,iva,subtotal,total FROM facturas INNER JOIN clientes ON facturas.RFC_Cliente = clientes.RFC_Cliente INNER JOIN proveedores ON facturas.RFC_Proveedor = proveedores.RFC_Proveedor WHERE clientes.nombre_cliente = '$cliente'");
+                    $cons = mysqli_query($conn, "SELECT NumeroDeFactura, nombre_cliente,clientes.RFC_Cliente,proveedores.RFC_Proveedor,nombre_proveedor,iva,subtotal,total FROM facturas INNER JOIN clientes ON facturas.RFC_Cliente = clientes.RFC_Cliente INNER JOIN proveedores ON facturas.RFC_Proveedor = proveedores.RFC_Proveedor WHERE clientes.nombre_cliente = '$cliente'");
 
-                  // $cons = mysqli_query($conn,"select * from facturas ");
+                    // $cons = mysqli_query($conn,"select * from facturas ");
 
-                  
+
 
                     if ($cons->num_rows > 0) {
-                        while($filas = $cons->fetch_assoc()){
-                            echo "<tr><td>" .$filas["NumeroDeFactura"]. "</td>";
-                            echo "<td>" .$filas["nombre_cliente"]. "</td>";
-                            echo "<td>" .$filas["RFC_Cliente"]. "</td>";
-                            echo "<td>" .$filas["nombre_proveedor"]. "</td>";
-                            echo "<td>" .$filas["RFC_Proveedor"]. "</td>";
-                            echo "<td>" .$filas["iva"]. "</td>";
-                            echo "<td>" .$filas["subtotal"]. "</td>";
-                            echo "<td>" .$filas["total"]. "</td>";
+                        while ($filas = $cons->fetch_assoc()) {
+                            echo "<tr><td>" . $filas["NumeroDeFactura"] . "</td>";
+                            echo "<td>" . $filas["nombre_cliente"] . "</td>";
+                            echo "<td>" . $filas["RFC_Cliente"] . "</td>";
+                            echo "<td>" . $filas["nombre_proveedor"] . "</td>";
+                            echo "<td>" . $filas["RFC_Proveedor"] . "</td>";
+                            echo "<td>" . $filas["iva"] . "</td>";
+                            echo "<td>" . $filas["subtotal"] . "</td>";
+                            echo "<td>" . $filas["total"] . "</td>";
+                            echo "<td><a href='" . $rutaPrueba . "'>Ver factura</a></td>";
                             echo "</tr>";
                         }
-                       
                     }
                 }
 
