@@ -64,15 +64,15 @@ VALUES
     'NONE'
   );
 INSERT INTO
-  `facturas_electronicas`.`facturas` (
-    `NumeroDeFactura`,
-    `Total_Impuestos`,
-    `iva`,
-    `total`,
-    `fecha`,
-    `RFC_Proveedor`,
-    `RFC_Cliente`,
-    `Ruta_Factura`
+  facturas_electronicas.facturas(
+    NumeroDeFactura,
+    Total_Impuestos,
+    iva,
+    total,
+    fecha,
+    RFC_Proveedor,
+    RFC_Cliente,
+    Ruta_Factura
   )
 VALUES
   (
