@@ -1,5 +1,6 @@
 <?php
-require "php/Conexion.php"
+require "php/Conexion.php";
+require "php/Consultas.php";
 
 ?>
 <!-- éste sitio no es responsivo para dispositivos móviles o pantallas pequeñas porque me dio pereza xd-->
@@ -27,38 +28,46 @@ require "php/Conexion.php"
         <div class="form-group">
             <h4>Busqueda por cliente</h3>
                 <label for="exampleInputEmail1">Nombre del cliente</label>
-                <input class="form-control" name="nombreCliente" placeholder="Nombre del cliente">
+                <input class="form-control" name="nombreCliente" placeholder="Nombre del cliente" required>
 
         </div>
 
         </div>
-        <button name="buscaClien" class="btn btn-primary">Submit</button>
+        <button name="buscaClien" class="btn btn-primary">Buscar</button>
     </form>
 
     <form id="f2" method="post" action="">
         <div class="form-group">
             <h4>Busqueda por proveedor</h3>
                 <label for="exampleInputEmail1">Nombre proveedor</label>
-                <input class="form-control" name="nombreProveedor" placeholder="Nombre del proveedor">
+                <input class="form-control" name="nombreProveedor" placeholder="Nombre del proveedor" required>
 
 
         </div>
-        <button type="submit" name="buscaProv" class="btn btn-primary">Submit</button>
+        <button name="buscaProv" class="btn btn-primary">Buscar</button>
     </form>
 
     <form id="f3" method="post" action="">
         <h4>Busqueda por factura</h3>
             <div class="form-group">
-                <label>Facturas dispo</label>
+                <label>Facturas disponibles por fecha</label>
                 <!-- a cambiar por un select -->
 
-                <select name="Facturas" class="form-control" id="">
-                    <option value="1">1</option>
+                <select name="FacturasFechas" class="form-control" id="">
+                    <?php
+                    $facturasConsult = mysqli_query($conn, "SELECT fecha FROM facturas");
+                    if ($facturasConsult->num_rows > 0) {
+                        while ($opciones = $facturasConsult->fetch_assoc()) {
+                            echo "<option value='$opciones[fecha]'> $opciones[fecha]</option>";
+                        }
+                    }
+
+                    ?>
                 </select>
 
             </div>
 
-            <button type="submit" name="buscaFact" class="btn btn-primary">Submit</button>
+            <button type="submit" name="buscaFact" class="btn btn-primary">Buscar</button>
     </form>
 
     <div id="tablaDatos">
@@ -91,33 +100,18 @@ require "php/Conexion.php"
                 if (isset($_POST["buscaClien"])) {
 
                     $cliente = $_POST["nombreCliente"];
-                    $rutaPrueba = "https://www.google.com";
 
-                  strtoupper($cliente);
+                    buscarClientes($cliente, $conn);
+                } else if (isset($_POST["buscaProv"])) {
 
-                    $cons = mysqli_query($conn, "SELECT NumeroDeFactura, Receptor,clientes.RFC_Cliente,proveedores.RFC_Proveedor,Emisor,iva,Total_Impuestos,total,Ruta_Factura FROM facturas INNER JOIN clientes ON facturas.RFC_Cliente = clientes.RFC_Cliente INNER JOIN proveedores ON facturas.RFC_Proveedor = proveedores.RFC_Proveedor WHERE clientes.Receptor = '$cliente'");
+                    $proveedor = $_POST["nombreProveedor"];
 
-                  
+                    buscarProveedor($proveedor, $conn);
+                } else if (isset($_POST["buscaFact"])) {
+                    $fecha = $_POST["FacturasFechas"];
 
-
-
-                    if ($cons->num_rows > 0) {
-                        while ($filas = $cons->fetch_assoc()) {
-                            echo "<tr><td>" . $filas["NumeroDeFactura"] . "</td>";
-                            echo "<td>" . $filas["Receptor"] . "</td>";
-                            echo "<td>" . $filas["RFC_Cliente"] . "</td>";
-                            echo "<td>" . $filas["Emisor"] . "</td>";
-                            echo "<td>" . $filas["RFC_Proveedor"] . "</td>";
-                            echo "<td>" . $filas["iva"] . "</td>";
-                            echo "<td>" . $filas["total"] . "</td>";
-                            echo "<td>" . $filas["Total_Impuestos"] . "</td>";
-                            echo "<td><a href='" . $filas["Ruta_Factura"] . "' target='_blank'>Ver factura</a></td>";
-                            echo "</tr>";
-                        }
-                    }
-                }
-
-
+                    
+                 }
 
                 ?>
             </tbody>
