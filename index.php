@@ -93,25 +93,25 @@ require "php/Conexion.php"
                     $cliente = $_POST["nombreCliente"];
                     $rutaPrueba = "https://www.google.com";
 
-                    strtolower($cliente);
+                  strtoupper($cliente);
 
-                    $cons = mysqli_query($conn, "SELECT NumeroDeFactura, nombre_cliente,clientes.RFC_Cliente,proveedores.RFC_Proveedor,nombre_proveedor,iva,subtotal,total FROM facturas INNER JOIN clientes ON facturas.RFC_Cliente = clientes.RFC_Cliente INNER JOIN proveedores ON facturas.RFC_Proveedor = proveedores.RFC_Proveedor WHERE clientes.nombre_cliente = '$cliente'");
+                    $cons = mysqli_query($conn, "SELECT NumeroDeFactura, Receptor,clientes.RFC_Cliente,proveedores.RFC_Proveedor,Emisor,iva,Total_Impuestos,total,Ruta_Factura FROM facturas INNER JOIN clientes ON facturas.RFC_Cliente = clientes.RFC_Cliente INNER JOIN proveedores ON facturas.RFC_Proveedor = proveedores.RFC_Proveedor WHERE clientes.Receptor = '$cliente'");
 
-                    // $cons = mysqli_query($conn,"select * from facturas ");
+                  
 
 
 
                     if ($cons->num_rows > 0) {
                         while ($filas = $cons->fetch_assoc()) {
                             echo "<tr><td>" . $filas["NumeroDeFactura"] . "</td>";
-                            echo "<td>" . $filas["nombre_cliente"] . "</td>";
+                            echo "<td>" . $filas["Receptor"] . "</td>";
                             echo "<td>" . $filas["RFC_Cliente"] . "</td>";
-                            echo "<td>" . $filas["nombre_proveedor"] . "</td>";
+                            echo "<td>" . $filas["Emisor"] . "</td>";
                             echo "<td>" . $filas["RFC_Proveedor"] . "</td>";
                             echo "<td>" . $filas["iva"] . "</td>";
-                            echo "<td>" . $filas["subtotal"] . "</td>";
                             echo "<td>" . $filas["total"] . "</td>";
-                            echo "<td><a href='" . $rutaPrueba . "'>Ver factura</a></td>";
+                            echo "<td>" . $filas["Total_Impuestos"] . "</td>";
+                            echo "<td><a href='" . $filas["Ruta_Factura"] . "' target='_blank'>Ver factura</a></td>";
                             echo "</tr>";
                         }
                     }
@@ -121,6 +121,7 @@ require "php/Conexion.php"
 
                 ?>
             </tbody>
+            <a href="" target="_blank"></a>
         </table>
     </div>
 
