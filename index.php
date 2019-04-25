@@ -24,51 +24,54 @@ require "php/Consultas.php";
     <h2>Facturas</h2>
 
 
-    <form id="f1" method="post" action="">
-        <div class="form-group">
-            <h4>Busqueda por cliente</h3>
-                <label for="exampleInputEmail1">Nombre del cliente</label>
-                <input class="form-control" name="nombreCliente" placeholder="Nombre del cliente" required>
-
-        </div>
-
-        </div>
-        <button name="buscaClien" class="btn btn-primary">Buscar</button>
-    </form>
-
-    <form id="f2" method="post" action="">
-        <div class="form-group">
-            <h4>Busqueda por proveedor</h3>
-                <label for="exampleInputEmail1">Nombre proveedor</label>
-                <input class="form-control" name="nombreProveedor" placeholder="Nombre del proveedor" required>
-
-
-        </div>
-        <button name="buscaProv" class="btn btn-primary">Buscar</button>
-    </form>
-
-    <form id="f3" method="post" action="">
-        <h4>Busqueda por factura</h3>
+    <div id="container">
+        <form id="f1" method="post" action="">
             <div class="form-group">
-                <label>Facturas disponibles por fecha</label>
-                <!-- a cambiar por un select -->
-
-                <select name="FacturasFechas" class="form-control" id="">
-                    <?php
-                    $facturasConsult = mysqli_query($conn, "SELECT fecha FROM facturas");
-                    if ($facturasConsult->num_rows > 0) {
-                        while ($opciones = $facturasConsult->fetch_assoc()) {
-                            echo "<option value='$opciones[fecha]'> $opciones[fecha]</option>";
-                        }
-                    }
-
-                    ?>
-                </select>
+                <h4>Busqueda por cliente</h3>
+                    <label for="exampleInputEmail1">Nombre del cliente</label>
+                    <input class="form-control" name="nombreCliente" placeholder="Nombre del cliente" required>
 
             </div>
 
-            <button type="submit" name="buscaFact" class="btn btn-primary">Buscar</button>
-    </form>
+
+            <button name="buscaClien" class="btn btn-primary">Buscar</button>
+        </form>
+
+        <form id="f2" method="post" action="">
+            <div class="form-group">
+                <h4>Busqueda por proveedor</h3>
+                    <label for="exampleInputEmail1">Nombre proveedor</label>
+                    <input class="form-control" name="nombreProveedor" placeholder="Nombre del proveedor" required>
+
+
+            </div>
+            <button name="buscaProv" class="btn btn-primary">Buscar</button>
+        </form>
+
+        <form id="f3" method="post" action="">
+            <h4>Busqueda por factura</h3>
+                <div class="form-group">
+                    <label>Facturas disponibles por fecha</label>
+                    <!-- a cambiar por un select -->
+
+                    <select name="FacturasFechas" class="form-control" id="">
+                        <?php
+                        $facturasConsult = mysqli_query($conn, "SELECT fecha FROM facturas");
+                        if ($facturasConsult->num_rows > 0) {
+                            while ($opciones = $facturasConsult->fetch_assoc()) {
+                                echo "<option value='$opciones[fecha]'> $opciones[fecha]</option>";
+                            }
+                        }
+
+                        ?>
+                    </select>
+
+                </div>
+
+                <button type="submit" name="buscaFact" class="btn btn-primary">Buscar</button>
+        </form>
+    </div>
+
 
     <div id="tablaDatos">
         <h3>datos de facturas: </h3>
@@ -111,10 +114,8 @@ require "php/Consultas.php";
                 } else if (isset($_POST["buscaFact"])) {
                     $fecha = $_POST["FacturasFechas"];
 
-                    buscarPorFecha($fecha,$conn);
-
-                    
-                 }
+                    buscarPorFecha($fecha, $conn);
+                }
 
                 ?>
             </tbody>

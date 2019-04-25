@@ -23,20 +23,21 @@ div#tablaDatos {
 form#f1 {
     color: white;
     margin-bottom: 3%;
-    margin-left: 5%;
     float: left;
 }
 
 form#f2 {
     color: white;
     margin-bottom: 3%;
-    margin-left: 20%;
-    float: left;
+    display: inline-block;
 }
 
 form#f3 {
     color: white;
     margin-bottom: 3%;
-    float: left;
-    margin-left: 20%;
+    float: right;
+}
+
+#container {
+    text-align: center;
 }
