@@ -4,7 +4,7 @@ function buscarClientes($condicion, $conexion)
 {
     strtoupper($condicion);
 
-    $cons = mysqli_query($conexion, "SELECT NumeroDeFactura, Receptor,clientes.RFC_Cliente,proveedores.RFC_Proveedor,Emisor,iva,Total_Impuestos,total,Ruta_Factura FROM facturas INNER JOIN clientes ON facturas.RFC_Cliente = clientes.RFC_Cliente INNER JOIN proveedores ON facturas.RFC_Proveedor = proveedores.RFC_Proveedor WHERE clientes.Receptor LIKE '%$condicion%'");
+    $cons = mysqli_query($conexion, "SELECT NumeroDeFactura, Receptor,clientes.RFC_Cliente,proveedores.RFC_Proveedor,Emisor,iva,fecha,Total_Impuestos,total,Ruta_Factura FROM facturas INNER JOIN clientes ON facturas.RFC_Cliente = clientes.RFC_Cliente INNER JOIN proveedores ON facturas.RFC_Proveedor = proveedores.RFC_Proveedor WHERE clientes.Receptor LIKE '%$condicion%'");
 
     if ($cons->num_rows > 0) {
         while ($filas = $cons->fetch_assoc()) {
