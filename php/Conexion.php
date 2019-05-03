@@ -3,7 +3,7 @@
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "facturas_electronicas";
+$dbname = "facturas_electronicas_2";
 $conn = new mysqli($servername, $username, $password, $dbname);
 $acentos = $conn->query("SET NAMES 'utf8'");
 
