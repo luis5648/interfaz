@@ -84,10 +84,11 @@ require "php/Consultas.php";
                     <th scope="col">RFC Cliente</th>
                     <th scope="col">Proveedor</th>
                     <th scope="col">RFC Proveedor</th>
-                    <th scope="col">IVA</th>
                     <th scope="col">Fecha</th>
-                    <th scope="col">Subtotal</th>
+                    <th scope="col">Total de impuesto</th>
                     <th scope="col">Total</th>
+                    
+
                 </tr>
             </thead>
             <tbody>
