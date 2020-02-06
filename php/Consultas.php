@@ -1,7 +1,7 @@
 <?php
 
 //eliminados:
-//iva, 
+//iva,
 
 function buscarClientes($condicion, $conexion)
 {
